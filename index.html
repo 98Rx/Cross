@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CROSS Menu</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background: #FFE5E0;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+      color: #E24B3A;
+      letter-spacing: 2px;
+    }
+
+    .menu {
+      background: #fff9f8;
+      border-radius: 10px;
+      max-width: 550px;
+      margin: 0 auto;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .menu-item {
+      border-bottom: 1px solid #f3c3bc;
+      padding: 15px 0;
+    }
+
+    .menu-item:last-child {
+      border-bottom: none;
+    }
+
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .item-title {
+      font-weight: bold;
+      font-size: 1.1em;
+      color: #E24B3A;
+    }
+
+    .item-price {
+      font-weight: bold;
+      color: #E24B3A;
+    }
+
+    .item-desc {
+      margin-top: 5px;
+      font-size: 0.9em;
+      color: #555;
+    }
+
+    .quantity-control {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      margin-top: 10px;
+    }
+
+    .quantity-control button {
+      background-color: #E24B3A;
+      color: white;
+      border: none;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .quantity-control span {
+      display: inline-block;
+      width: 40px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 16px;
+      color: #333;
+    }
+
+    button:hover:not(.qty) {
+      background-color: #c43c2d;
+    }
+
+    .total {
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+
+    .note-box {
+      margin-top: 20px;
+    }
+
+    .note-box textarea {
+      width: 100%;
+      border: 1px solid #f3c3bc;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 0.95em;
+      resize: none;
+      height: 80px;
+      background-color: #fffaf9;
+    }
+
+    .order-btn {
+      background-color: #E24B3A;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 20px;
+      margin-top: 20px;
+      width: 100%;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .order-btn:hover {
+      background-color: #c43c2d;
+    }
+
+    .allergens {
+      text-align: center;
+      font-size: 0.9em;
+      margin-top: 20px;
+      color: #555;
+    }
+
+    .allergens span {
+      display: inline-block;
+      background: #ffe0da;
+      color: #E24B3A;
+      padding: 6px 10px;
+      border-radius: 20px;
+      margin: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>CROSS MENU</h1>
+  </header>
+
+  <div class="menu">
+    <div class="menu-item" data-name="Nutella Bomb Croissant" data-price="21">
+      <div class="item-header">
+        <span class="item-title">Nutella Bomb Croissant</span>
+        <span class="item-price">21 SAR</span>
+      </div>
+      <p class="item-desc">Warm croissant filled with Nutella spread, crunchy Kinder Bueno pieces, and chopped vanilla chocolate ice cream stick topped with powdered sugar.</p>
+      <div class="quantity-control">
+        <button onclick="changeQty(this, -1)">−</button>
+        <span class="qty">0</span>
+        <button onclick="changeQty(this, 1)">+</button>
+      </div>
+    </div>
+
+    <div class="menu-item" data-name="Crazy Kinder Croissant" data-price="21">
+      <div class="item-header">
+        <span class="item-title">Crazy Kinder Croissant</span>
+        <span class="item-price">21 SAR</span>
+      </div>
+      <p class="item-desc">Warm croissant filled with rich Kinder spread, Kinder Bueno pieces, cool vanilla chocolate ice cream stick, and a dusting of powdered sugar.</p>
+      <div class="quantity-control">
+        <button onclick="changeQty(this, -1)">−</button>
+        <span class="qty">0</span>
+        <button onclick="changeQty(this, 1)">+</button>
+      </div>
+    </div>
+
+    <div class="menu-item" data-name="Nutella or Kinder Spread (Add-on)" data-price="3">
+      <div class="item-header">
+        <span class="item-title">Nutella or Kinder Spread (Add-on)</span>
+        <span class="item-price">3 SAR</span>
+      </div>
+      <div class="quantity-control">
+        <button onclick="changeQty(this, -1)">−</button>
+        <span class="qty">0</span>
+        <button onclick="changeQty(this, 1)">+</button>
+      </div>
+    </div>
+
+    <div class="menu-item" data-name="Crunchy Kinder Bueno (Add-on)" data-price="3">
+      <div class="item-header">
+        <span class="item-title">Crunchy Kinder Bueno (Add-on)</span>
+        <span class="item-price">3 SAR</span>
+      </div>
+      <div class="quantity-control">
+        <button onclick="changeQty(this, -1)">−</button>
+        <span class="qty">0</span>
+        <button onclick="changeQty(this, 1)">+</button>
+      </div>
+    </div>
+
+    <div class="menu-item" data-name="Coffee of the Day" data-price="9">
+      <div class="item-header">
+        <span class="item-title">Coffee of the Day</span>
+        <span class="item-price">9 SAR</span>
+      </div>
+      <p class="item-desc">Signature coffee brewed daily from the finest beans and served iced in a cup of ice.</p>
+      <div class="quantity-control">
+        <button onclick="changeQty(this, -1)">−</button>
+        <span class="qty">0</span>
+        <button onclick="changeQty(this, 1)">+</button>
+      </div>
+    </div>
+
+    <div class="menu-item" data-name="Water" data-price="1">
+      <div class="item-header">
+        <span class="item-title">Water</span>
+        <span class="item-price">1 SAR</span>
+      </div>
+      <div class="quantity-control">
+        <button onclick="changeQty(this, -1)">−</button>
+        <span class="qty">0</span>
+        <button onclick="changeQty(this, 1)">+</button>
+      </div>
+    </div>
+
+    <div class="total" id="total">Total: 0 SAR</div>
+
+    <div class="note-box">
+      <label for="note"><strong>Add a Note (optional):</strong></label>
+      <textarea id="note" placeholder="Write your note or special request here..."></textarea>
+    </div>
+
+    <button class="order-btn" onclick="sendWhatsAppOrder()">Send Order via WhatsApp</button>
+
+    <div class="allergens">
+      <p><strong>Allergens:</strong></p>
+      <span>Milk</span><span>Almonds</span><span>Peanuts</span><span>Gluten</span>
+    </div>
+  </div>
+
+  <script>
+    function changeQty(button, delta) {
+      const qtyElem = button.parentElement.querySelector('.qty');
+      let qty = parseInt(qtyElem.textContent) || 0;
+      qty = Math.max(0, qty + delta);
+      qtyElem.textContent = qty;
+      updateTotal();
+    }
+
+    function updateTotal() {
+      let total = 0;
+      document.querySelectorAll('.menu-item').forEach(item => {
+        const qty = parseInt(item.querySelector('.qty').textContent) || 0;
+        const price = parseFloat(item.dataset.price);
+        total += qty * price;
+      });
+      document.getElementById('total').textContent = `Total: ${total} SAR`;
+    }
+
+    // === ORDER NUMBER SYSTEM ===
+    function getOrderNumber() {
+      const today = new Date().toLocaleDateString();
+      const storedDate = localStorage.getItem("orderDate");
+      let orderNum = localStorage.getItem("orderNum");
+
+      if (storedDate !== today) {
+        orderNum = 1;
+        localStorage.setItem("orderDate", today);
+      } else {
+        orderNum = orderNum ? parseInt(orderNum) : 1;
+      }
+
+      localStorage.setItem("orderNum", orderNum);
+      return orderNum;
+    }
+
+    function increaseOrderNumber() {
+      let current = parseInt(localStorage.getItem("orderNum")) || 1;
+      current++;
+      localStorage.setItem("orderNum", current);
+    }
+
+    function sendWhatsAppOrder() {
+      let total = 0;
+      let orderNum = getOrderNumber();
+      let orderText = `🧾 *CROSS ORDER #${orderNum}:*\n`;
+
+      document.querySelectorAll('.menu-item').forEach(item => {
+        const qty = parseInt(item.querySelector('.qty').textContent) || 0;
+        if (qty > 0) {
+          const name = item.dataset.name;
+          const price = parseFloat(item.dataset.price);
+          orderText += `• ${name} x${qty} = ${qty * price} SAR\n`;
+          total += qty * price;
+        }
+      });
+
+      if (total === 0) {
+        alert("Please select at least one item before sending.");
+        return;
+      }
+
+      const note = document.getElementById("note").value.trim();
+      if (note) {
+        orderText += `\n📝 *Note:* ${note}\n`;
+      }
+
+      orderText += `\n💰 *Total:* ${total} SAR\n\nThank you for your order!`;
+
+      const phoneNumber = "966595525747";
+      const encodedMessage = encodeURIComponent(orderText);
+      const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+      window.open(whatsappURL, '_blank');
+
+      increaseOrderNumber(); // increase after sending
+    }
+  </script>
+
+</body>
+</html>
